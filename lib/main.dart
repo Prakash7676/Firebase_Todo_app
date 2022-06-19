@@ -159,9 +159,13 @@ class _HomePageState extends State<HomePage> {
   Widget build(BuildContext context) {
     return Scaffold(
         appBar: AppBar(
-          backgroundColor: Colors.red,
-          title: const Center(child: Text('Firebase Todostore')),
-        ),
+            title: const Center(child: Text('Firebase Todostore')),
+            flexibleSpace: Container(
+                decoration: BoxDecoration(
+                    gradient: LinearGradient(
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                        colors: <Color>[Colors.red, Colors.green])))),
         body: StreamBuilder(
           stream: _products.snapshots(),
           builder: (context, AsyncSnapshot<QuerySnapshot> streamSnapshot) {
@@ -173,18 +177,14 @@ class _HomePageState extends State<HomePage> {
                       streamSnapshot.data!.docs[index];
                   return Card(
                     child: Container(
-                      height: 200,
-                      width: 200,
-                      alignment: Alignment.center,
                       decoration: BoxDecoration(
-                        boxShadow: [
-                          BoxShadow(
-                              offset: Offset(0, 30),
-                              color: Color.fromARGB(255, 36, 239, 18)
-                                  .withAlpha(100),
-                              blurRadius: 40)
-                        ],
-                      ),
+                          gradient: LinearGradient(
+                              begin: Alignment.topLeft,
+                              end: Alignment.bottomRight,
+                              colors: <Color>[
+                            Colors.red,
+                            Colors.blue,
+                          ])),
                       child: ListTile(
                         title: Text(documentSnapshot['name']),
                         subtitle: Text(documentSnapshot['price'].toString()),
